@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Meu Amor ❤️</title>
+<style>
+body{margin:0;background:black;color:white;text-align:center;font-family:Arial;overflow-x:hidden}
+
+#loading{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  background:black;
+  z-index:10;
+  font-size:2em;
+  animation:fadeOut 3s forwards 3s;
+}
+
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden}
+}
+
+h1{margin-top:20px}
+
+.data{font-size:1.3em;margin:10px}
+
+.frases{font-size:1.2em;margin:10px;height:30px}
+
+.fraseGrande{font-size:2em;margin:30px;font-weight:bold}
+
+.galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;padding:20px}
+.galeria img{width:100%;border-radius:15px}
+
+.coracao{position:fixed;top:-10px;color:red;font-size:20px;animation:cair linear infinite}
+@keyframes cair{to{transform:translateY(110vh)}}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  Carregando nosso amor... ❤️
+</div>
+
+<h1>Eu te amo ❤️</h1>
+<div class="data" id="data"></div>
+
+<div class="frases" id="frases"></div>
+
+<div class="fraseGrande">Always and Forever ❤️</div>
+
+<audio id="musica" autoplay loop playsinline>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="galeria">
+<img src="foto1.jpg"><img src="foto2.jpg"><img src="foto3.jpg"><img src="foto4.jpg">
+</div>
+
+<script>
+// DATA DO NAMORO
+const dataNamoro = new Date("2022-04-21");
+
+function atualizarData(){
+ const hoje = new Date();
+ const diff = hoje - dataNamoro;
+ const dias = Math.floor(diff/(1000*60*60*24));
+ document.getElementById("data").innerText = "Estamos juntos há "+dias+" dias ❤️";
+}
+atualizarData();
+
+// FRASES
+const lista = [
+"Você é tudo pra mim ❤️",
+"Eu te amo mais a cada dia 💕",
+"Meu mundo é você 💖",
+"Com você sou feliz 💘",
+"Pra sempre nós dois ❤️",
+"Você é minha melhor escolha 💞",
+"Eu escolheria você mil vezes 💓",
+"Você é meu lugar favorito ❤️",
+"Meu coração é seu 💗",
+"Tudo fica melhor com você 💕",
+"Você é minha paz 💖",
+"Te amar é fácil 💘",
+"Quero você pra sempre ❤️",
+"Você é meu sonho 💞",
+"Minha vida é você 💓",
+"Só preciso de você ❤️",
+"Você me faz sorrir 💕",
+"Eu amo cada detalhe seu 💖",
+"Nosso amor é lindo 💘",
+"Você é especial demais ❤️",
+"Eu te escolheria sempre 💞",
+"Você é minha felicidade 💓"
+];
+
+let i=0;
+function trocar(){
+ document.getElementById("frases").innerText = lista[i];
+ i=(i+1)%lista.length;
+}
+setInterval(trocar,3000);
+trocar();
+
+// MUSICA
+const m = document.getElementById("musica");
+window.addEventListener("load",()=>{m.play().catch(()=>{});});
+
+// CORAÇÕES
+function criarCoracao(){
+ const c=document.createElement("div");
+ c.classList.add("coracao");
+ c.innerText="❤️";
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(Math.random()*3+2)+"s";
+ document.body.appendChild(c);
+ setTimeout(()=>c.remove(),5000);
+}
+setInterval(criarCoracao,300);
+</script>
+
+</body>
+</html>
